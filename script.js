@@ -19,9 +19,9 @@ function getComputerChoice()
 
 
 // Retrieve player input and convert to title case
-function getPlayerChoice()
+function getPlayerChoice(message = 'Enter your choice:')
 {
-    let choice = prompt('Enter your choice:');
+    let choice = prompt(message);
     choice = choice.toLowerCase();
     while (choice !== 'rock' && choice !== 'paper' && choice !== 'scissors')
     {
@@ -37,15 +37,74 @@ function getPlayerChoice()
 function playRound(playerChoice, computerChoice)
 {
     // Retrieve winner based on array indexing
-    const moves = ['Rock', 'Paper', 'Scissors'];
-    const playerIndex = moves.indexOf(playerChoice);
-    const computerIndex = moves.indexOf(computerChoice);
+    const MOVES = ['Rock', 'Paper', 'Scissors'];
 
-    // Check for winner
-    if (playerIndex === (computerIndex + 1) % 3)
-        return `You Win! ${playerChoice} beats ${computerChoice}.`
-    else if (computerIndex === (playerIndex + 1) % 3)
-        return `You Lose! ${computerChoice} beats ${playerChoice}.`
-    else
-        return `It's a Tie! ${playerChoice} is the same as ${computerChoice}.`
+    // Loop until there is no tie
+    while(true)
+    {
+        // Retrieve indices of moves
+        let playerIndex = MOVES.indexOf(playerChoice);
+        let computerIndex = MOVES.indexOf(computerChoice);
+
+        // Check for winner
+        if (playerIndex === (computerIndex + 1) % 3)
+            return `You Win! ${playerChoice} beats ${computerChoice}.`;
+        else if (computerIndex === (playerIndex + 1) % 3)
+            return `You Lose! ${computerChoice} beats ${playerChoice}.`;
+
+        // Replay round on tie
+        let redoMessage = `It's a Tie! Both players picked ${playerChoice}. The round will be replayed.`;
+        playerChoice = getPlayerChoice(redoMessage + '\n\nEnter your choice:');
+        computerChoice = getComputerChoice();
+    }
 }
+
+
+// Play a best-of-five game of Rock-Paper-Scissors
+function game()
+{
+    // Variables for score tracking
+    let wins = 0;
+    let losses = 0;
+
+    // Play best-of-five
+    for(let i = 1; i <= 5; i++)
+    {
+        // Play round and track winner's score
+        let result = playRound(getPlayerChoice(), getComputerChoice());
+        console.log(`Results of Round ${i}: ${result}`);
+        if (result.startsWith('You Win'))
+            wins++;
+        else
+            losses++;
+
+        // Check for 3 matches won
+        if (wins === 3 || losses === 3)
+        {
+            console.log('\n');
+            break;
+        }
+        else
+        {
+            console.log('Current Standings');
+            console.log('----------------------');
+            console.log(`    Your score: ${wins} of 5`);
+            console.log(`    COM score:  ${losses} of 5`);
+            console.log('\n');
+        }
+    }
+
+    // Print final results to screen
+    console.log('Final Results');
+    console.log('----------------------');
+    console.log(`    Your score: ${wins} of 5`);
+    console.log(`    COM score:  ${losses} of 5`);
+    if (wins === 3)
+        console.log('\nCongratulations, you win the game!');
+    else
+        console.log('\nBetter luck next time.');
+}
+
+
+// Run the game!
+game();
