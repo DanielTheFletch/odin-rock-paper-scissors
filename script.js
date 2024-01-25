@@ -80,29 +80,29 @@ function game()
 
         // Check for 3 matches won
         if (wins === 3 || losses === 3)
-        {
-            console.log('\n');
             break;
-        }
         else
-        {
-            console.log('Current Standings');
-            console.log('----------------------');
-            console.log(`    Your score: ${wins} of 5`);
-            console.log(`    COM score:  ${losses} of 5`);
-            console.log('\n');
-        }
+            printScores('Current Standings', wins, losses);
     }
 
     // Print final results to screen
-    console.log('Final Results');
-    console.log('----------------------');
-    console.log(`    Your score: ${wins} of 5`);
-    console.log(`    COM score:  ${losses} of 5`);
+    console.log('\nThe game is over!\n');
+    printScores('Final Results', wins, losses);
     if (wins === 3)
         console.log('\nCongratulations, you win the game!');
     else
         console.log('\nBetter luck next time.');
+}
+
+
+// Helper function: Print scores to the screen
+function printScores(displayTitle, scorePlayer, scoreCOM)
+{
+    console.log(displayTitle);
+    console.log('----------------------');
+    console.log(`    Your score: ${scorePlayer} of 5`);
+    console.log(`    COM score:  ${scoreCOM} of 5`);
+    console.log('\n');
 }
 
 
