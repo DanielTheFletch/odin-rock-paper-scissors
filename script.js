@@ -67,6 +67,12 @@ function game()
     let wins = 0;
     let losses = 0;
 
+    // Greet the player
+    console.log('Welcome to the Rock Paper Scissors game!');
+    console.log('You\'ll be playing against a computer player.');
+    console.log('Let\'s begin!');
+    console.log('\n');
+
     // Play best-of-five
     for(let i = 1; i <= 5; i++)
     {
