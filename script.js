@@ -18,25 +18,34 @@ function getComputerChoice()
 }
 
 
+// Retrieve player input and convert to title case
+function getPlayerChoice()
+{
+    let choice = prompt('Enter your choice:');
+    choice = choice.toLowerCase();
+    while (choice !== 'rock' && choice !== 'paper' && choice !== 'scissors')
+    {
+        choice = prompt('Invalid entry. Must play Rock, Paper, or Scissors.\nEnter your choice: ');
+        choice = choice.toLowerCase();
+    }
+
+    return choice.charAt(0).toUpperCase() + choice.substring(1);
+}
+
+
 // Play one round of Rock-Paper-Scissors (re-do round on tie)
 function playRound(playerChoice, computerChoice)
 {
-    // Convert player choice to title case
-    const playerConverted = (
-        playerChoice.charAt(0).toUpperCase() +
-        playerChoice.substring(1).toLowerCase()
-    );
-
     // Retrieve winner based on array indexing
     const moves = ['Rock', 'Paper', 'Scissors'];
-    const playerIndex = moves.indexOf(playerConverted);
+    const playerIndex = moves.indexOf(playerChoice);
     const computerIndex = moves.indexOf(computerChoice);
 
     // Check for winner
     if (playerIndex === (computerIndex + 1) % 3)
-        return `You Win! ${playerConverted} beats ${computerChoice}.`
+        return `You Win! ${playerChoice} beats ${computerChoice}.`
     else if (computerIndex === (playerIndex + 1) % 3)
-        return `You Lose! ${computerChoice} beats ${playerConverted}.`
+        return `You Lose! ${computerChoice} beats ${playerChoice}.`
     else
-        return `It's a Tie! ${playerConverted} is the same as ${computerChoice}.`
+        return `It's a Tie! ${playerChoice} is the same as ${computerChoice}.`
 }
