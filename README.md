@@ -1,10 +1,12 @@
-# Project Title
+# Rock, Paper, Scissors: JavaScript Edition
 
-Project description.
+Play the classic game of Rock, Paper, Scissors against a computer opponent in this JavaScript console application.
+Note that in the project's current state, the console (e.g., **More tools > Developer tools > Console**) must be
+open to see much of the game's interactivity.
 
 ## Technologies Used
 
-- List of relevant technologies.
+- JavaScript
 
 ## Credits
 
@@ -13,6 +15,4 @@ Project description.
     - Portfolio site: [daniel-fletcher-portfolio.com](https://www.daniel-fletcher-portfolio.com)
 - Project specifications from **The Odin Project** online curriculum
     - Home page: [The Odin Project](https://www.theodinproject.com/)
-    - Project specifications: [Project: Project Title](https://www.theodinproject.com/lessons/foundations-landing-page)
-- Other related credits and attributions.
-
+    - Project specifications: [Rock Paper Scissors](https://www.theodinproject.com/lessons/foundations-rock-paper-scissors)
