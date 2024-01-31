@@ -1,8 +1,6 @@
 # Rock, Paper, Scissors: JavaScript Edition
 
-Play the classic game of Rock, Paper, Scissors against a computer opponent in this JavaScript console application.
-Note that in the project's current state, the console (e.g., **More tools > Developer tools > Console**) must be
-open to see much of the game's interactivity.
+Play the classic game of Rock, Paper, Scissors against a computer opponent.
 
 ## Technologies Used
 

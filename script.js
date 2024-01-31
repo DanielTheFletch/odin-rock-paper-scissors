@@ -66,8 +66,9 @@ function playRound(playerChoice)
 
     // Replay round on tie
     return (
-        `Both players picked ${playerChoice.toUpperCase()}, so it's a tie. ` +
-        `No points awarded for this round.`
+        `You picked ${playerChoice.toUpperCase()}. ` + 
+        `COM picked ${computerChoice.toUpperCase()}. ` + 
+        `Both players picked ${playerChoice.toUpperCase()}, so it's a tie. No points awarded.`
     );
 }
 
