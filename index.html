@@ -8,19 +8,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS Rock Paper Scissors</title>
+
+    <link rel="stylesheet" href="./styles.css">
     <script src="./script.js" defer></script>
   </head>
 
   <body>
-    <div class="log"></div>
-    <div>
+    <div class="container">
+      <div class="results">
+        <p>This is the results div!</p>
+      </div>
+      <div class="scores">
+        <p>Your current score: <span class="score" id="player-score">0</span> points</p>
+        <p>COM current score: <span class="score" id="computer-score">0</span> points</p>
+      </div>
+    </div>
+    <div class="choices">
       <button class="rps-choice">Rock</button>
       <button class="rps-choice">Paper</button>
       <button class="rps-choice">Scissors</button>
-    </div>
-    <div>
-      <p>Your current score: <span class="score" id="player-score">0</span> points</p>
-      <p>COM current score: <span class="score" id="computer-score">0</span> points</p>
     </div>
   </body>
 </html>
