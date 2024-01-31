@@ -5,6 +5,16 @@
 */
 
 
+/* --- GENERAL PROPERTIES --- */
+:root {
+  --color-failure: #D88C9A;
+  --color-success: #99C1B9;
+  --color-rock: #99C1B9;
+  --color-paper: #F1E3D3;
+  --color-scissors: #F2D0A9;
+}
+
+
 .choices {
   display: flex;
   justify-content: center;
@@ -13,4 +23,16 @@
 .container {
   display: flex;
   justify-content: center;
+}
+
+.rps-choice:nth-of-type(1) {
+  background-color: var(--color-rock);
+}
+
+.rps-choice:nth-of-type(2) {
+  background-color: var(--color-paper);
+}
+
+.rps-choice:nth-of-type(3) {
+  background-color: var(--color-scissors);
 }
