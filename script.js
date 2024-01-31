@@ -17,13 +17,35 @@ function getComputerChoice()
         return 'Scissors';
 }
 
+// Update running scores
+function updateScore(scoreType)
+{
+    // Retrieve score element based on score type (e.g., player or computer)
+    let scoreDisplay;
+    if (scoreType === 'Player')
+        scoreDisplay = document.querySelector('#player-score');
+    else if (scoreType === 'COM')
+        scoreDisplay = document.querySelector('#computer-score');
+    else
+        return
+
+    // Add 1 point to specified score
+    const scoreValue = parseInt(scoreDisplay.textContent);
+    scoreDisplay.textContent = (scoreValue + 1).toString();
+}
+
 
 // Add event listeners to buttons
 const buttons = document.querySelectorAll('.rps-choice');
 buttons.forEach(btn => {
     const playerChoice = btn.textContent;
     btn.addEventListener('click', () => {
-        console.log(playRound(playerChoice));
+        const results = playRound(playerChoice);
+        console.log(results);
+        if (results.startsWith('You Win'))
+            updateScore('Player');
+        else if (results.startsWith('You Lose'))
+            updateScore('COM');
     });
 });
 
