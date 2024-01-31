@@ -5,16 +5,15 @@
 */
 
 
+// Global constant for possible moves
+const MOVES = ['Rock', 'Paper', 'Scissors'];
+
+
 // Retrieve randomized choice for computer player
 function getComputerChoice()
 {
     let choice = Math.floor(Math.random() * 3);
-    if (choice === 0)
-        return 'Rock';
-    else if (choice === 1)
-        return 'Paper';
-    else
-        return 'Scissors';
+    return MOVES[choice];
 }
 
 
@@ -40,30 +39,43 @@ function updateScore(scoreType)
 // Play one round of Rock-Paper-Scissors (re-do round on tie)
 function playRound(playerChoice)
 {
-    const computerChoice = getComputerChoice();
+    // Get computer choice
+    let computerChoice = getComputerChoice();
 
-    // Retrieve winner based on array indexing
-    const MOVES = ['Rock', 'Paper', 'Scissors'];
-
-    // Retrieve indices of moves
+    // Retrieve indices of moves in array
     let playerIndex = MOVES.indexOf(playerChoice);
     let computerIndex = MOVES.indexOf(computerChoice);
 
     // Check for winner
     if (playerIndex === (computerIndex + 1) % 3)
-        return `You Win! ${playerChoice} beats ${computerChoice}.`;
+    {
+        return (
+            `You picked ${playerChoice.toUpperCase()}. ` + 
+            `COM picked ${computerChoice.toUpperCase()}. ` + 
+            `${playerChoice.toUpperCase()} beats ${computerChoice.toUpperCase()}, so you win!`
+        );
+    }
     else if (computerIndex === (playerIndex + 1) % 3)
-        return `You Lose! ${computerChoice} beats ${playerChoice}.`;
+    {
+        return (
+            `You picked ${playerChoice.toUpperCase()}. ` + 
+            `COM picked ${computerChoice.toUpperCase()}. ` + 
+            `${computerChoice.toUpperCase()} beats ${playerChoice.toUpperCase()}, so you lose.`
+        );
+    }
 
     // Replay round on tie
-    return `It's a Tie! Both players picked ${playerChoice}. The round will be replayed.`;
+    return (
+        `Both players picked ${playerChoice.toUpperCase()}, so it's a tie. ` +
+        `No points awarded for this round.`
+    );
 }
 
 
 // Add event listeners to buttons
 const buttons = document.querySelectorAll('.rps-choice');
 buttons.forEach(btn => {
-    const playerChoice = btn.textContent;
+    const playerChoice = btn.textContent.trim();
     btn.addEventListener('click', () => {
         // Display round results in on-screen log
         const results = playRound(playerChoice);
@@ -73,9 +85,9 @@ buttons.forEach(btn => {
         // Update scores as necessary
         let playerScore = 0;
         let computerScore = 0;
-        if (results.startsWith('You Win'))
+        if (results.endsWith('you win!'))
             playerScore = updateScore('Player');
-        else if (results.startsWith('You Lose'))
+        else if (results.endsWith('you lose.'))
             computerScore = updateScore('COM');
 
         // Check for game end
