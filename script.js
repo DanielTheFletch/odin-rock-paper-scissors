@@ -72,6 +72,47 @@ function playRound(playerChoice)
 }
 
 
+// Update page when game ends
+function endTheGame(endgameMessage)
+{
+    // Gray out results and scoreboard
+    document.querySelector('.results').style.opacity = 0.675;
+    document.querySelector('.scores').style.opacity = 0.675;
+
+    // Remove buttons
+    const container = document.querySelector('.container');
+    const buttons = document.querySelector('.choices');
+    container.removeChild(buttons);
+
+    // Add game over message
+    const endgame = document.createElement('div');
+    const gameOver = document.createElement('p');
+    gameOver.textContent = 'GAME OVER!';
+    gameOver.style.fontSize = '1.75rem';
+    gameOver.style.marginBottom = '8px';
+    endgame.appendChild(gameOver);
+
+    // Add win/lose message
+    const message = document.createElement('p');
+    message.textContent = endgameMessage;
+    message.style.fontSize = '1rem';
+    message.style.marginTop = 0;
+    message.style.marginBottom = '32px';
+    endgame.appendChild(message);
+
+    // Add button to play again
+    const playAgainButton = document.createElement('button');
+    playAgainButton.textContent = 'Play again';
+    playAgainButton.classList.add('rps-choice');
+    playAgainButton.addEventListener('click', () => location.reload());
+    endgame.appendChild(playAgainButton);
+
+    // Add new div to main container
+    endgame.style.textAlign = 'center';
+    container.appendChild(endgame);
+}
+
+
 // Add event listeners to buttons
 const buttons = document.querySelectorAll('.rps-choice');
 buttons.forEach(btn => {
@@ -99,41 +140,6 @@ buttons.forEach(btn => {
 
         // Change screen for game end, if necessary
         if (endgameMessage)
-        {
-            // Gray out results and scoreboard
-            document.querySelector('.results').style.opacity = 0.675;
-            document.querySelector('.scores').style.opacity = 0.675;
-
-            // Remove buttons
-            const container = document.querySelector('.container');
-            const buttons = document.querySelector('.choices');
-            container.removeChild(buttons);
-
-            // Add game over message
-            const endgame = document.createElement('div');
-            const gameOver = document.createElement('p');
-            gameOver.textContent = 'GAME OVER!';
-            gameOver.style.fontSize = '1.75rem';
-            gameOver.style.marginBottom = '8px';
-            endgame.appendChild(gameOver);
-
-            // Add win/lose message
-            const message = document.createElement('p');
-            message.textContent = endgameMessage;
-            message.style.fontSize = '1rem';
-            message.style.marginTop = 0;
-            message.style.marginBottom = '32px';
-            endgame.appendChild(message);
-
-            // Add button to play again
-            const playAgainButton = document.createElement('button');
-            playAgainButton.textContent = 'Play again';
-            playAgainButton.classList.add('rps-choice');
-            endgame.appendChild(playAgainButton);
-
-            // Add new div to main container
-            endgame.style.textAlign = 'center';
-            container.appendChild(endgame);
-        }
+            endTheGame(endgameMessage);
     });
 });
