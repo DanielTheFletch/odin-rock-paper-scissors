@@ -18,7 +18,7 @@ function getComputerChoice()
 }
 
 
-// Update running scores
+// Update running scores and corresponding displays
 function updateScore(scoreType)
 {
     // Retrieve score element based on score type (e.g., player or computer)
@@ -64,8 +64,14 @@ const buttons = document.querySelectorAll('.rps-choice');
 buttons.forEach(btn => {
     const playerChoice = btn.textContent;
     btn.addEventListener('click', () => {
+        // Display round results in on-screen log
         const results = playRound(playerChoice);
-        console.log(results);
+        const gamelog = document.querySelector('div.log');
+        const statement = document.createElement('p');
+        statement.textContent = results;
+        gamelog.appendChild(statement);
+
+        // Update scores as necessary
         if (results.startsWith('You Win'))
             updateScore('Player');
         else if (results.startsWith('You Lose'))
