@@ -91,13 +91,49 @@ buttons.forEach(btn => {
             computerScore = updateScore('COM');
 
         // Check for game end
-        const endgameMessage = document.createElement('p');
+        let endgameMessage = '';
         if (playerScore === 5)
-            endgameMessage.textContent = 'GAME OVER!\nYou win, great job!';
+            endgameMessage = 'You win, great job!';
         else if (computerScore === 5)
-            endgameMessage.textContent = 'GAME OVER!\nYou lose, better luck next time.';
+            endgameMessage = 'You lose, better luck next time.';
 
-        if (endgameMessage.textContent)
-            display.appendChild(endgameMessage);
+        // Change screen for game end, if necessary
+        if (endgameMessage)
+        {
+            // Gray out results and scoreboard
+            document.querySelector('.results').style.opacity = 0.675;
+            document.querySelector('.scores').style.opacity = 0.675;
+
+            // Remove buttons
+            const container = document.querySelector('.container');
+            const buttons = document.querySelector('.choices');
+            container.removeChild(buttons);
+
+            // Add game over message
+            const endgame = document.createElement('div');
+            const gameOver = document.createElement('p');
+            gameOver.textContent = 'GAME OVER!';
+            gameOver.style.fontSize = '1.75rem';
+            gameOver.style.marginBottom = '8px';
+            endgame.appendChild(gameOver);
+
+            // Add win/lose message
+            const message = document.createElement('p');
+            message.textContent = endgameMessage;
+            message.style.fontSize = '1rem';
+            message.style.marginTop = 0;
+            message.style.marginBottom = '32px';
+            endgame.appendChild(message);
+
+            // Add button to play again
+            const playAgainButton = document.createElement('button');
+            playAgainButton.textContent = 'Play again';
+            playAgainButton.classList.add('rps-choice');
+            endgame.appendChild(playAgainButton);
+
+            // Add new div to main container
+            endgame.style.textAlign = 'center';
+            container.appendChild(endgame);
+        }
     });
 });
