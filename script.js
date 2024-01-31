@@ -18,6 +18,16 @@ function getComputerChoice()
 }
 
 
+// Add event listeners to buttons
+const buttons = document.querySelectorAll('.rps-choice');
+buttons.forEach(btn => {
+    const playerChoice = btn.textContent;
+    btn.addEventListener('click', () => {
+        console.log(playRound(playerChoice));
+    });
+});
+
+
 // Retrieve player input and convert to title case
 function getPlayerChoice(message = 'Enter your choice:')
 {
@@ -34,29 +44,25 @@ function getPlayerChoice(message = 'Enter your choice:')
 
 
 // Play one round of Rock-Paper-Scissors (re-do round on tie)
-function playRound(playerChoice, computerChoice)
+function playRound(playerChoice)
 {
+    const computerChoice = getComputerChoice();
+
     // Retrieve winner based on array indexing
     const MOVES = ['Rock', 'Paper', 'Scissors'];
 
-    // Loop until there is no tie
-    while(true)
-    {
-        // Retrieve indices of moves
-        let playerIndex = MOVES.indexOf(playerChoice);
-        let computerIndex = MOVES.indexOf(computerChoice);
+    // Retrieve indices of moves
+    let playerIndex = MOVES.indexOf(playerChoice);
+    let computerIndex = MOVES.indexOf(computerChoice);
 
-        // Check for winner
-        if (playerIndex === (computerIndex + 1) % 3)
-            return `You Win! ${playerChoice} beats ${computerChoice}.`;
-        else if (computerIndex === (playerIndex + 1) % 3)
-            return `You Lose! ${computerChoice} beats ${playerChoice}.`;
+    // Check for winner
+    if (playerIndex === (computerIndex + 1) % 3)
+        return `You Win! ${playerChoice} beats ${computerChoice}.`;
+    else if (computerIndex === (playerIndex + 1) % 3)
+        return `You Lose! ${computerChoice} beats ${playerChoice}.`;
 
-        // Replay round on tie
-        let redoMessage = `It's a Tie! Both players picked ${playerChoice}. The round will be replayed.`;
-        playerChoice = getPlayerChoice(redoMessage + '\n\nEnter your choice:');
-        computerChoice = getComputerChoice();
-    }
+    // Replay round on tie
+    return `It's a Tie! Both players picked ${playerChoice}. The round will be replayed.`;
 }
 
 
@@ -113,4 +119,4 @@ function printScores(displayTitle, scorePlayer, scoreCOM)
 
 
 // Run the game!
-game();
+// game();
