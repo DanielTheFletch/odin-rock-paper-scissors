@@ -5,13 +5,23 @@
 */
 
 
+@import url('https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap');
+
+
 /* --- GENERAL PROPERTIES --- */
 :root {
-  --color-failure: #D88C9A;
-  --color-success: #99C1B9;
-  --color-rock: #99C1B9;
-  --color-paper: #F1E3D3;
-  --color-scissors: #F2D0A9;
+  --color-bg: #000000;
+  --color-fg: #00ED33;
+  --color-rock: #EEC0C6;
+  --color-paper: #7EE8FA;
+  --color-scissors: #E58C8A;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-family: 'Sixtyfour', sans-serif;
+  margin: 0;
 }
 
 
