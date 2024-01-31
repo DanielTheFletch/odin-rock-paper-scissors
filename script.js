@@ -67,10 +67,8 @@ buttons.forEach(btn => {
     btn.addEventListener('click', () => {
         // Display round results in on-screen log
         const results = playRound(playerChoice);
-        const gamelog = document.querySelector('div.log');
-        const statement = document.createElement('p');
-        statement.textContent = results;
-        gamelog.appendChild(statement);
+        const display = document.querySelector('div.results > p');
+        display.textContent = results;
 
         // Update scores as necessary
         let playerScore = 0;
@@ -88,6 +86,6 @@ buttons.forEach(btn => {
             endgameMessage.textContent = 'GAME OVER!\nYou lose, better luck next time.';
 
         if (endgameMessage.textContent)
-            gamelog.appendChild(endgameMessage);
+            display.appendChild(endgameMessage);
     });
 });
