@@ -25,6 +25,7 @@ body {
 }
 
 
+/* --- CONTAINERS & LAYOUTS --- */
 .choices {
   display: flex;
   justify-content: center;
@@ -35,6 +36,8 @@ body {
   justify-content: center;
 }
 
+
+/* --- BUTTONS --- */
 .rps-choice:nth-of-type(1) {
   background-color: var(--color-rock);
 }
