@@ -10,6 +10,7 @@
     <title>JS Rock Paper Scissors</title>
 
     <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.0/css/all.css">
     <script src="./script.js" defer></script>
   </head>
 
@@ -17,17 +18,19 @@
     <h1>Rock, Paper, Scissors</h1>
     <div class="container">
       <div class="results">
+        <h2>Results</h2>
         <p>Think you have what it takes? Select your choice to begin the first match.</p>
       </div>
       <div class="scores">
-        <p>Your current score: <span class="score" id="player-score">0</span> points</p>
-        <p>COM current score: <span class="score" id="computer-score">0</span> points</p>
+        <h2>Scoreboard</h2>
+        <p>YOU: <span class="score" id="player-score">0</span></p>
+        <p>COM: <span class="score" id="computer-score">0</span></p>
       </div>
     </div>
     <div class="choices">
-      <button class="rps-choice">Rock</button>
-      <button class="rps-choice">Paper</button>
-      <button class="rps-choice">Scissors</button>
+      <button class="rps-choice"><span class="fa-regular fa-hand-back-fist"></span> Rock</button>
+      <button class="rps-choice"><span class="fa-regular fa-hand"></span> Paper</button>
+      <button class="rps-choice"><span class="fa-regular fa-hand-scissors"></span> Scissors</button>
     </div>
   </body>
 </html>
