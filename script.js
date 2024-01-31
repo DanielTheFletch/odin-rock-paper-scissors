@@ -28,11 +28,12 @@ function updateScore(scoreType)
     else if (scoreType === 'COM')
         scoreDisplay = document.querySelector('#computer-score');
     else
-        return
+        return null
 
     // Add 1 point to specified score
     const scoreValue = parseInt(scoreDisplay.textContent);
     scoreDisplay.textContent = (scoreValue + 1).toString();
+    return scoreValue + 1;
 }
 
 
@@ -72,9 +73,21 @@ buttons.forEach(btn => {
         gamelog.appendChild(statement);
 
         // Update scores as necessary
+        let playerScore = 0;
+        let computerScore = 0;
         if (results.startsWith('You Win'))
-            updateScore('Player');
+            playerScore = updateScore('Player');
         else if (results.startsWith('You Lose'))
-            updateScore('COM');
+            computerScore = updateScore('COM');
+
+        // Check for game end
+        const endgameMessage = document.createElement('p');
+        if (playerScore === 5)
+            endgameMessage.textContent = 'GAME OVER!\nYou win, great job!';
+        else if (computerScore === 5)
+            endgameMessage.textContent = 'GAME OVER!\nYou lose, better luck next time.';
+
+        if (endgameMessage.textContent)
+            gamelog.appendChild(endgameMessage);
     });
 });
